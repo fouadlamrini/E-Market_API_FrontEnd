@@ -5,7 +5,6 @@ const instance = axios.create({
     withCredentials:true,
     headers:{
         Accept:"application/json",
-
     }
 
 });

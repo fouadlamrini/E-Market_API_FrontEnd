@@ -38,19 +38,19 @@ const userSchema = new mongoose.Schema(
       },
     },
 
-    nickname: {
-      type: String,
-      trim: true,
-      minlength: [2, 'Nickname must be at least 2 characters long'],
-      maxlength: [20, 'Nickname cannot exceed 20 characters'],
-      validate: {
-        validator: function (nickname) {
-          if (!nickname) return true;
-          return /^[a-zA-Z0-9_]+$/.test(nickname);
-        },
-        message: 'Nickname can only contain letters, numbers and underscore',
-      },
-    },
+    // nickname: {
+    //   type: String,
+    //   trim: true,
+    //   minlength: [2, 'Nickname must be at least 2 characters long'],
+    //   maxlength: [20, 'Nickname cannot exceed 20 characters'],
+    //   validate: {
+    //     validator: function (nickname) {
+    //       if (!nickname) return true;
+    //       return /^[a-zA-Z0-9_]+$/.test(nickname);
+    //     },
+    //     message: 'Nickname can only contain letters, numbers and underscore',
+    //   },
+    // },
 
     email: {
       type: String,

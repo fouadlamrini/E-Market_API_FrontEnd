@@ -1,14 +1,22 @@
 import {  FaStar } from "react-icons/fa";
-import { getImageUrl } from "../utils/imageHelper";
 
-const ProductCard = ({title, currentPrice, originPrice , img}) => {
+
+
+const ProductCard = ({title, currentPrice , img}) => {
+
+ 
+
+
+
+
+
   return (
       <div className="bg-white rounded-lg shadow hover:shadow-lg transition relative overflow-hidden">
       
     
-      <div className="relative h-64 bg-gray-200 flex items-center justify-center">
-        <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">NEW</span>
-       <img src={getImageUrl(img)} alt={title} />
+      <div className="relative h-64 bg-gray-200 overflow-hidden">
+        <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded z-10">NEW</span>
+       <img src={img} alt={title} className="w-full h-full object-cover" />
       </div>
 
       <div className="p-4">
@@ -16,7 +24,6 @@ const ProductCard = ({title, currentPrice, originPrice , img}) => {
         
         <div className="flex items-center gap-2 mb-2">
           <span className="text-gray-800 font-bold">{currentPrice}DH</span>
-          <span className="text-gray-400 line-through text-sm">{originPrice} DH</span>
         </div>
 
         <div className="flex items-center gap-1 text-yellow-400 mb-2">

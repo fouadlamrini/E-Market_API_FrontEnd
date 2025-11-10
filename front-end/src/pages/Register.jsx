@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "../../axios";
 
 function Register() {
  
@@ -7,13 +8,14 @@ function Register() {
 
     const handleRegister = async (e) => {
         e.preventDefault();
-         const FormData = new FormData(e.target);
-         const Data = Object.fromEntries(FormData.entries());
+         const formData = new FormData(e.target);
+         const Data = Object.fromEntries(formData.entries());
 
         try{
-        const response = await axios.post("/auth/register", Data);
-       if( responce.status === 201 ) {
-         navigate("/login");
+        const response = await axios.post("/auth/v1/register", Data);
+       if( response.status === 201 ) { 
+        console.log("Inscription réussie");     
+          navigate("/login");
        } 
        else{
         console.error("Echec de connexion");
@@ -35,7 +37,7 @@ function Register() {
         </p>
         
         <div className="space-y-5">
-            <form action="/">
+            <form action="" onSubmit={handleRegister} >
             <div>
                 <label for="fullname" className="block text-sm font-medium text-gray-900 mb-2">
                     First Name
@@ -51,7 +53,7 @@ function Register() {
                 <label for="lastName" className="block text-sm font-medium text-gray-900 mb-2">
                    Last Name
                 </label>
-                <input  name="last_name"
+                <input  name="lastName"
                     type="text" 
                     id="fullname" 
                     placeholder="Entrez votre nom complet"
@@ -120,7 +122,7 @@ function Register() {
                 </div>
             </div> */}
              
-            <button type="submit"OnClick={handleRegister}  className="w-full bg-black text-white py-2 rounded font-medium hover:bg-gray-800 transition duration-200 mt-6">
+            <button type="submit" className="w-full bg-black text-white py-2 rounded font-medium hover:bg-gray-800 transition duration-200 mt-6">
                 Créer mon compte
             </button>
            </form> 

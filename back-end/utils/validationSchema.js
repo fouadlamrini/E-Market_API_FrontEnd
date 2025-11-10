@@ -9,10 +9,10 @@ const userSchema = yup.object({
     .string()
     .required('last name is required')
     .min(3, 'last Name must be at least 3 characters'),
-  nickname: yup
-    .string()
-    .required('nickname is required')
-    .min(3, 'nickname must be at least 3 characters'),
+  // nickname: yup
+  //   .string()
+  //   .required('nickname is required')
+  //   .min(3, 'nickname must be at least 3 characters'),
   email: yup
     .string()
     .required('Email is required')
@@ -26,7 +26,7 @@ const userSchema = yup.object({
 const updateprofile = yup.object({
   firstName: yup.string().min(3, 'first Name must be at least 3 characters'),
   lastName: yup.string().min(3, 'last Name must be at least 3 characters'),
-  nickname: yup.string().min(3, 'nickname must be at least 3 characters'),
+  // nickname: yup.string().min(3, 'nickname must be at least 3 characters'),
   email: yup.string().email('Invalid email format'),
 });
 

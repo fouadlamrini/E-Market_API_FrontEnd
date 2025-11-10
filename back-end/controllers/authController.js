@@ -13,7 +13,7 @@ const generateToken = (userId) => {
 class AuthController {
   async register(req, res) {
     try {
-      const { firstName, lastName, nickname, email, password } = req.body;
+      const { firstName, lastName, email, password } = req.body;
 
       const existingUser = await User.findOne({ email });
       if (existingUser) {
@@ -31,7 +31,7 @@ class AuthController {
       const user = new User({
         firstName,
         lastName,
-        nickname,
+        // nickname,
         email,
         password,
         role: userRole._id,
@@ -52,7 +52,7 @@ class AuthController {
           uuid: user.uuid,
           firstName: user.firstName,
           lastName: user.lastName,
-          nickname: user.nickname,
+          // nickname: user.nickname,
           email: user.email,
           role: roleName,
         },

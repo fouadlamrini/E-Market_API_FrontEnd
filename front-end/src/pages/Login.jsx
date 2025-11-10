@@ -1,7 +1,33 @@
+import axios from "../../axios";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
+
+      const navigate = useNavigate();
+
+    const handleLogin = async (e) => {
+        e.preventDefault();
+         const formData = new FormData(e.target);
+         const Data = Object.fromEntries(formData.entries());
+
+        try{
+        const response = await axios.post("/auth/v1/login", Data);
+       if( response.status === 200 ) { 
+        console.log("Login réussie");     
+          navigate("/");
+       } 
+       else{
+        console.error("Echec de connexion");
+       }
+             
+        }catch(error){
+            console.error(error);
+        }
+    }
+   
+
+
   return (
     <div className="w-full max-w-md mx-auto flex flex-col items-center justify-center h-screen">
       <h1 className="text-4xl font-light text-center mb-3">Connexion</h1>
@@ -11,6 +37,7 @@ function Login() {
       </p>
 
       <div className="space-y-6 w-full">
+        <form action=""  onSubmit={handleLogin} >
         {/* Champ Email */}
         <div>
           <label
@@ -21,6 +48,7 @@ function Login() {
           </label>
           <input
             type="email"
+            name="email"
             id="email"
             placeholder="Entrez votre email"
             className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
@@ -38,16 +66,17 @@ function Login() {
           <input
             type="password"
             id="password"
+            name="password"
             placeholder="Entrez votre mot de passe"
             className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
           />
         </div>
-
+   
         {/* Bouton Connexion */}
-        <button className="w-full bg-black text-white py-2 rounded font-medium hover:bg-gray-900 transition duration-200">
+        <button type="submit" className="w-full bg-black text-white py-2 rounded font-medium hover:bg-gray-900 transition duration-200">
           Se connecter
         </button>
-
+     </form>
         {/* Connexion Google */}
         <button className="w-full bg-white border border-gray-300 py-2 rounded font-medium hover:bg-gray-50 transition duration-200 flex items-center justify-center gap-2">
           <svg className="w-5 h-5" viewBox="0 0 24 24">

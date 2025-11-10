@@ -1,7 +1,7 @@
-// const API_BASE_URL = 'http://localhost:3000';
+const API_BASE_URL = 'http://localhost:3000';
 
-// export const getImageUrl = (imagePath) => {
-//   if (!imagePath) return '';
-//   if (imagePath.startsWith('http')) return imagePath;
-//   return `${API_BASE_URL}${imagePath}`;
-// };
+export const getImageUrl = (imagePath) => {
+  if (!imagePath) return '';
+  if (imagePath.startsWith('http')) return imagePath;
+  return `${API_BASE_URL}${imagePath}`;
+};

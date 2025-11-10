@@ -5,14 +5,15 @@ const cors = require('cors');
 const securityMiddleware = (app) => {
   app.use(
     helmet({
+      crossOriginResourcePolicy: { policy: "cross-origin" },
       contentSecurityPolicy: false,
     })
   );
 
   app.use(
     cors({
-      origin: process.env.CLIENT_URL || 'http://localhost:3000', // set your frontend URL here
-      methods: ['GET', 'POST', 'PUT', 'DELETE'],
+      origin: process.env.CLIENT_URL || 'http://localhost:5173',
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
       credentials: true,
     })
   );

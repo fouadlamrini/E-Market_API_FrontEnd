@@ -98,7 +98,7 @@ const rateLimiter = require('./middlewares/rateLimiter');
 
 app.use('/api/auth', rateLimiter(5, 15), authRoutes);
 app.use('/api/categories', rateLimiter(5, 30), categoryRoutes);
-app.use('/api/products', rateLimiter(5, 40), productRoutes);
+app.use('/api/products', productRoutes);
 app.use('/api/profiles', rateLimiter(5, 10), profileRoutes);
 app.use('/api/request', rateLimiter(5, 10), requestRoutes);
 app.use('/api/v2/carts', rateLimiter(5, 40), cartRoutes);

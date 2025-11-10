@@ -1,16 +1,28 @@
 import { FaStar } from "react-icons/fa";
 import ProductCard from "../components/ProductCard";
+import axios from "../../axios";
+import { useState, useEffect } from "react";
 
 function Home() {
-  const productData = [
-    { titre: "titre 1", currentPrice: "120" , originPrice : "160" , image :"https://via.placeholder.com/300x300?text=Product+1"},
-    { titre: "titre 2", currentPrice: "130" , originPrice : "200" , image :"https://via.placeholder.com/300x300?text=Product+2" },
-    { titre: "titre 3", currentPrice: "99" , originPrice : "129" , image :"https://via.placeholder.com/300x300?text=Product+3"},
-    { titre: "titre 4", currentPrice: "150" , originPrice : "250" , image :"https://via.placeholder.com/300x300?text=Product+4" }
+ const [products , setProducts] = useState([]);
 
-  ];
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const response = await axios.get("/products/v1");
+        if (response.status === 200) {
+          setProducts(response.data.data.products || response.data.data || []);
+        }
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+    getProduct();
+  }, []);
+   
+ 
 
-
+  
   return (
     <>
       <section className="hero-bg">
@@ -83,7 +95,7 @@ function Home() {
             </a>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
            {
                 productData &&
                 productData.map((item, index) => (
@@ -101,7 +113,7 @@ function Home() {
 
            
            
-          </div>
+          </div> */}
         </div>
       </section>
 
@@ -130,197 +142,21 @@ function Home() {
         </button>
       </section>
 
-      <section className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        <div className="bg-white rounded-lg shadow hover:shadow-lg transition relative overflow-hidden">
-          <div className="relative h-64 bg-gray-200 flex items-center justify-center">
-            <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
-              NEW
-            </span>
-            <span className="text-gray-400">Product Image</span>
-          </div>
 
-          <div className="p-4">
-            <h3 className="text-lg font-semibold text-gray-800 mb-1">
-              Running canvas shoes
-            </h3>
 
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-gray-800 font-bold">120 DH</span>
-              <span className="text-gray-400 line-through text-sm">160 DH</span>
-            </div>
 
-            <div className="flex items-center gap-1 text-yellow-400 mb-2">
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <span className="text-gray-500 text-sm">(88)</span>
-            </div>
 
-            <button className="w-full text-center bg-gray-800 text-white py-2 rounded hover:bg-gray-900 transition">
-              Add to Cart
-            </button>
-          </div>
-        </div>
-        <div className="bg-white rounded-lg shadow hover:shadow-lg transition relative overflow-hidden">
-          <div className="relative h-64 bg-gray-200 flex items-center justify-center">
-            <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
-              NEW
-            </span>
-            <span className="text-gray-400">Product Image</span>
-          </div>
+     
 
-          <div className="p-4">
-            <h3 className="text-lg font-semibold text-gray-800 mb-1">
-              Running canvas shoes
-            </h3>
-
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-gray-800 font-bold">120 DH</span>
-              <span className="text-gray-400 line-through text-sm">160 DH</span>
-            </div>
-
-            <div className="flex items-center gap-1 text-yellow-400 mb-2">
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <span className="text-gray-500 text-sm">(88)</span>
-            </div>
-
-            <button className="w-full text-center bg-gray-800 text-white py-2 rounded hover:bg-gray-900 transition">
-              Add to Cart
-            </button>
-          </div>
-        </div>
-        <div className="bg-white rounded-lg shadow hover:shadow-lg transition relative overflow-hidden">
-          <div className="relative h-64 bg-gray-200 flex items-center justify-center">
-            <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
-              NEW
-            </span>
-            <span className="text-gray-400">Product Image</span>
-          </div>
-
-          <div className="p-4">
-            <h3 className="text-lg font-semibold text-gray-800 mb-1">
-              Running canvas shoes
-            </h3>
-
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-gray-800 font-bold">120 DH</span>
-              <span className="text-gray-400 line-through text-sm">160 DH</span>
-            </div>
-
-            <div className="flex items-center gap-1 text-yellow-400 mb-2">
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <span className="text-gray-500 text-sm">(88)</span>
-            </div>
-
-            <button className="w-full text-center bg-gray-800 text-white py-2 rounded hover:bg-gray-900 transition">
-              Add to Cart
-            </button>
-          </div>
-        </div>
-        <div className="bg-white rounded-lg shadow hover:shadow-lg transition relative overflow-hidden">
-          <div className="relative h-64 bg-gray-200 flex items-center justify-center">
-            <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
-              NEW
-            </span>
-            <span className="text-gray-400">Product Image</span>
-          </div>
-
-          <div className="p-4">
-            <h3 className="text-lg font-semibold text-gray-800 mb-1">
-              Running canvas shoes
-            </h3>
-
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-gray-800 font-bold">120 DH</span>
-              <span className="text-gray-400 line-through text-sm">160 DH</span>
-            </div>
-
-            <div className="flex items-center gap-1 text-yellow-400 mb-2">
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <span className="text-gray-500 text-sm">(88)</span>
-            </div>
-
-            <button className="w-full text-center bg-gray-800 text-white py-2 rounded hover:bg-gray-900 transition">
-              Add to Cart
-            </button>
-          </div>
-        </div>
-        <div className="bg-white rounded-lg shadow hover:shadow-lg transition relative overflow-hidden">
-          <div className="relative h-64 bg-gray-200 flex items-center justify-center">
-            <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
-              NEW
-            </span>
-            <span className="text-gray-400">Product Image</span>
-          </div>
-
-          <div className="p-4">
-            <h3 className="text-lg font-semibold text-gray-800 mb-1">
-              Running canvas shoes
-            </h3>
-
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-gray-800 font-bold">120 DH</span>
-              <span className="text-gray-400 line-through text-sm">160 DH</span>
-            </div>
-
-            <div className="flex items-center gap-1 text-yellow-400 mb-2">
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <span className="text-gray-500 text-sm">(88)</span>
-            </div>
-
-            <button className="w-full text-center bg-gray-800 text-white py-2 rounded hover:bg-gray-900 transition">
-              Add to Cart
-            </button>
-          </div>
-        </div>
-
-        <div className="bg-white rounded-lg shadow hover:shadow-lg transition relative overflow-hidden">
-          <div className="relative h-64 bg-gray-200 flex items-center justify-center">
-            <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
-              NEW
-            </span>
-            <span className="text-gray-400">Product Image</span>
-          </div>
-          <div className="p-4">
-            <h3 className="text-lg font-semibold text-gray-800 mb-1">
-              Running canvas shoes
-            </h3>
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-gray-800 font-bold">120 DH</span>
-              <span className="text-gray-400 line-through text-sm">160 DH</span>
-            </div>
-            <div className="flex items-center gap-1 text-yellow-400 mb-2">
-              {" "}
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <span className="text-gray-500 text-sm">(88)</span>
-            </div>
-            <button className="w-full text-center bg-gray-800 text-white py-2 rounded hover:bg-gray-900 transition">
-              Add to Cart
-            </button>
-          </div>
-        </div>
+       <section className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+     {products.map((product) => (
+  <ProductCard
+    key={product._id}
+    title={product.title}
+    currentPrice={product.price}
+    img={`http://localhost:3000${product.mainImage?.url || ''}`}
+  />
+))}
       </section>
 
       <footer className="bg-gray-800 text-white py-12">
