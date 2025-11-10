@@ -1,4 +1,5 @@
 import {  FaStar } from "react-icons/fa";
+import { getImageUrl } from "../utils/imageHelper";
 
 const ProductCard = ({title, currentPrice, originPrice , img}) => {
   return (
@@ -7,7 +8,7 @@ const ProductCard = ({title, currentPrice, originPrice , img}) => {
     
       <div className="relative h-64 bg-gray-200 flex items-center justify-center">
         <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">NEW</span>
-       <img src= {img} alt={title} />
+       <img src={getImageUrl(img)} alt={title} />
       </div>
 
       <div className="p-4">

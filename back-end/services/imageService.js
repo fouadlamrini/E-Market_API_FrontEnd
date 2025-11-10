@@ -20,7 +20,7 @@ class ImageService {
     const dirs = [
       this.baseDir,
       path.join(this.baseDir, 'original'),
-      path.join(this.baseDir, 'thumbnails'),
+      path.join(this.baseDir, 'thumbnail'),
       path.join(this.baseDir, 'small'),
       path.join(this.baseDir, 'medium'),
       path.join(this.baseDir, 'large'),
