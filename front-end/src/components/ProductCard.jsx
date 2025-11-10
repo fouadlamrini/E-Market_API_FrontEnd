@@ -1,8 +1,8 @@
 import {  FaStar } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 
-
-const ProductCard = ({title, currentPrice , img}) => {
+const ProductCard = ({title, currentPrice , img,productId}) => {
 
  
 
@@ -20,7 +20,7 @@ const ProductCard = ({title, currentPrice , img}) => {
       </div>
 
       <div className="p-4">
-        <h3 className="text-lg font-semibold text-gray-800 mb-1">{title}</h3>
+       <Link to={productId}> <h3 className="text-lg font-semibold text-gray-800 mb-1">{title}</h3></Link>
         
         <div className="flex items-center gap-2 mb-2">
           <span className="text-gray-800 font-bold">{currentPrice}DH</span>

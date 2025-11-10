@@ -154,6 +154,7 @@ function Home() {
     key={product._id}
     title={product.title}
     currentPrice={product.price}
+    productId={`/product/${product._id}`}
     img={`http://localhost:3000${product.mainImage?.url || ''}`}
   />
 ))}
